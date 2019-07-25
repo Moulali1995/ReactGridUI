@@ -1,2 +1,0 @@
-# ReactGridUI
-Created with CodeSandbox
