@@ -9,8 +9,8 @@ class Main extends React.Component {
     this.state = {
       noofrows: 0,
       columnsstring: "",
-      gutterrow: "",
-      guttercol: ""
+      gutterrow: "0px",
+      guttercol: "0px"
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
@@ -25,22 +25,12 @@ class Main extends React.Component {
     console.log(columnsarr);
     // Loop for returning the grid of rows and columns
     for (var i = 0; i < this.state.noofrows; i++) {
-      let ele = columnsarr[i];
-      let noofcolumns = parseInt(ele, 10);
-      console.log(noofcolumns);
-      for (var j = 0; j < noofcolumns; j++) {
-        rows.push(
-          <div>
-            <Box specs={this.state} />
-          </div>
-        );
+      for (var j = 0; j < parseInt(columnsarr[i], 10); j++) {
+        rows.push(<Box specs={this.state} />);
       }
-      rows.push(
-        <div>
-          <br />
-        </div>
-      );
+      rows.push(<br />);
     }
+    console.log(rows);
     return (
       <div className="Main">
         <h2>REACT GRID SYSTEM </h2>
@@ -82,16 +72,16 @@ class Main extends React.Component {
 function Box(props) {
   const { gutterrow, guttercol } = props.specs;
   // style object to provide the style attributes for the box
-  const boxobj = {
+  const boxStyle = {
     height: "100px",
     border: "5px solid",
     backgroundColor: "brown",
-    margin: guttercol,
-    padding: gutterrow
+    marginLeft: gutterrow,
+    marginTop: guttercol
   };
 
   return (
-    <div className="Box" style={boxobj}>
+    <div className="Box" style={boxStyle}>
       <h1>100px Height Box</h1>
     </div>
   );
